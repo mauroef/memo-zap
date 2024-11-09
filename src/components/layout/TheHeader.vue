@@ -30,7 +30,7 @@
           }}</router-link>
         </div>
         <div class="hidden flex-none lg:flex">
-          <ul class="menu menu-horizontal">
+          <ul class="menu menu-horizontal gap-2">
             <li><router-link class="text-white" to="new">New Milestone</router-link></li>
             <li><router-link class="text-white" to="login">Login</router-link></li>
           </ul>
@@ -59,7 +59,7 @@
         </div>
       </header>
     </div>
-    <div class="drawer-side">
+    <div class="drawer-side z-10">
       <label
         for="my-drawer-3"
         aria-label="close sidebar"
