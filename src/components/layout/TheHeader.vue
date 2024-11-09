@@ -31,8 +31,8 @@
         </div>
         <div class="hidden flex-none lg:flex">
           <ul class="menu menu-horizontal gap-2">
-            <li><router-link class="text-white" to="new">New Milestone</router-link></li>
-            <li><router-link class="text-white" to="login">Login</router-link></li>
+            <li><router-link class="text-white" to="/milestones">My Milestones</router-link></li>
+            <li><router-link class="text-white" to="/login">Login</router-link></li>
           </ul>
           <div class="flex-none gap-2">
             <div class="dropdown dropdown-end">
@@ -66,8 +66,8 @@
         class="drawer-overlay"
       ></label>
       <ul class="menu bg-base-200 min-h-full w-80 p-4">
-        <li><router-link to="new">New Milestone</router-link></li>
-        <li><router-link to="login">Login</router-link></li>
+        <li><router-link to="/milestones">My Milestones</router-link></li>
+        <li><router-link to="/login">Login</router-link></li>
       </ul>
     </div>
   </div>

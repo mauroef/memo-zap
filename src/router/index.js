@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '@/views/HomeView.vue';
-import LoginView from '@/views/LoginView.vue';
-import NewView from '@/views/NewView.vue';
+import LoginView from '@/views/auth/LoginView.vue';
+import MilestoneListView from '@/views/milestones/MilestoneListView.vue';
+import MilestoneNewView from '@/views/milestones/MilestoneNewView.vue';
 import NotFoundView from '@/views/NotFoundView.vue';
 
 const router = createRouter({
@@ -18,12 +19,17 @@ const router = createRouter({
       component: LoginView,
     },
     {
-      path: '/new',
-      name: 'new',
-      component: NewView,
+      path: '/milestones',
+      name: 'milestones',
+      component: MilestoneListView,
     },
     {
-      path: '/:pathMatch(.*)*', // Comodín para capturar cualquier ruta no definida
+      path: '/milestones/new',
+      name: 'milestoneNew',
+      component: MilestoneNewView,
+    },
+    {
+      path: '/:pathMatch(.*)*',
       name: 'NotFound',
       component: NotFoundView,
     },

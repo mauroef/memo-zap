@@ -5,7 +5,7 @@
     <nav class="grid grid-flow-col gap-4">
       <router-link to="/" class="link link-hover">Home</router-link>
       <router-link to="/login" class="link link-hover">Login</router-link>
-      <router-link to="/new" class="link link-hover">New Milestone</router-link>
+      <router-link to="/milestones" class="link link-hover">Milestones</router-link>
     </nav>
     <nav>
       <div class="grid grid-flow-col gap-4">
