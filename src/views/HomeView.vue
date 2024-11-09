@@ -1,27 +1,22 @@
 <template>
-  <section class="p-6">
-    <article class="hero bg-base-200 min-h-screen rounded-lg">
-      <div class="hero-content text-center">
-        <div class="max-w-xl">
-          <h1 class="text-5xl font-bold">
-            Welcome to
-            <span
-              class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary font-extrabold"
-              >{{ SITE_NAME }}</span
-            >!
-          </h1>
-          <p class="py-6">
-            Track and celebrate every special milestone in your life. Start by
-            logging in to create your first milestone and never miss a moment to
-            remember!
-          </p>
-          <router-link to="/login" class="btn btn-primary"
-            >Log In to Get Started</router-link
-          >
-        </div>
-      </div>
-    </article>
-  </section>
+  <BaseHero cta cta-text="Log In to Get Started" cta-link="/login" >
+    <template #title
+      >Welcome to
+      <span
+        class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary font-extrabold"
+        >{{ SITE_NAME }}</span
+      >!</template
+    >
+    <template #description
+      >Track and celebrate every special milestone in your life. Start by
+      logging in to create your first milestone and never miss a moment to
+      remember!</template
+    >
+  </BaseHero>
+
+  <div class="px-6 w-full">
+    <div class="divider divider-primary"></div>
+  </div>
 
   <section class="p-6">
     <article class="bg-base-200 p-8 rounded-lg">
@@ -81,4 +76,5 @@
 
 <script setup>
 import { SITE_NAME } from '@/constants';
+import BaseHero from '@/components/ui/BaseHero.vue';
 </script>
