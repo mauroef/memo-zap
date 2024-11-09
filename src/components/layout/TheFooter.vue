@@ -3,9 +3,9 @@
     class="footer footer-center bg-base-200 text-base-content rounded p-10"
   >
     <nav class="grid grid-flow-col gap-4">
-      <a class="link link-hover">Home</a>
-      <a class="link link-hover">Login</a>
-      <a class="link link-hover">New Milestone</a>
+      <router-link to="/" class="link link-hover">Home</router-link>
+      <router-link to="/login" class="link link-hover">Login</router-link>
+      <router-link to="/new" class="link link-hover">New Milestone</router-link>
     </nav>
     <nav>
       <div class="grid grid-flow-col gap-4">

@@ -2,6 +2,7 @@
 import { useMilestoneStore } from '../store';
 
 const milestonesStore = useMilestoneStore();
+
 </script>
 
 <template>
