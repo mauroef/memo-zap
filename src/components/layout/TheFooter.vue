@@ -19,7 +19,7 @@
       </div>
     </nav>
     <aside>
-      <p>MemoZap – Keeping memories alive since 2024</p>
+      <p>{{ SITE_NAME }} – Keeping memories alive since 2024</p>
       <p>
         Developed by
         <a
@@ -33,3 +33,7 @@
     </aside>
   </footer>
 </template>
+
+<script setup>
+import {SITE_NAME} from '@/constants';
+</script>

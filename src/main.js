@@ -5,7 +5,7 @@ import App from './App.vue';
 
 import router from './router';
 import { createPinia } from 'pinia';
-import { OhVueIcon } from '../plugins/icons';
+import { OhVueIcon } from './plugins/icons';
 
 const app = createApp(App);
 
