@@ -14,7 +14,7 @@
           target="_blank"
           href="https://github.com/mauroef/memo-zap"
         >
-          <v-icon scale="2" hover="true" animation="wrench" name="bi-github" />
+          <v-icon scale="2" hover animation="wrench" speed="fast" name="bi-github" />
         </a>
       </div>
     </nav>
@@ -26,7 +26,7 @@
           rel="noopener"
           target="_blank"
           href="https://mauroef.dev"
-          class="link"
+          class="link link-hover link-info"
           >mauroef</a
         >.
       </p>

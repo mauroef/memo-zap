@@ -1,22 +1,23 @@
-<script setup>
-import { useMilestoneStore } from '../store';
-import { SITE_NAME } from '@/constants';
-
-const milestonesStore = useMilestoneStore();
-</script>
-
 <template>
   <section class="p-6">
     <article class="hero bg-base-200 min-h-screen rounded-lg">
       <div class="hero-content text-center">
         <div class="max-w-xl">
-          <h1 class="text-5xl font-bold">Welcome to <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary font-extrabold">{{ SITE_NAME }}</span>!</h1>
+          <h1 class="text-5xl font-bold">
+            Welcome to
+            <span
+              class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary font-extrabold"
+              >{{ SITE_NAME }}</span
+            >!
+          </h1>
           <p class="py-6">
             Track and celebrate every special milestone in your life. Start by
             logging in to create your first milestone and never miss a moment to
             remember!
           </p>
-          <router-link to="/login" class="btn btn-primary">Log In to Get Started</router-link>
+          <router-link to="/login" class="btn btn-primary"
+            >Log In to Get Started</router-link
+          >
         </div>
       </div>
     </article>
@@ -33,7 +34,9 @@ const milestonesStore = useMilestoneStore();
       </div>
       <div class="flex flex-col lg:flex-row justify-around items-center gap-6">
         <!-- Step 1 Card -->
-        <div class="card w-full lg:w-1/4 bg-base-100 shadow-md md:min-h-[300px]">
+        <div
+          class="card w-full lg:w-1/4 bg-base-100 shadow-md md:min-h-[300px]"
+        >
           <div class="card-body items-center text-center">
             <v-icon scale="3" class="text-primary" name="bi-person-circle" />
             <h3 class="card-title mt-4 text-2xl">Login</h3>
@@ -45,7 +48,9 @@ const milestonesStore = useMilestoneStore();
         </div>
 
         <!-- Step 2 Card -->
-        <div class="card w-full lg:w-1/4 bg-base-100 shadow-md md:min-h-[300px]">
+        <div
+          class="card w-full lg:w-1/4 bg-base-100 shadow-md md:min-h-[300px]"
+        >
           <div class="card-body items-center text-center">
             <v-icon scale="3" class="text-primary" name="bi-plus-circle" />
             <h3 class="card-title mt-4 text-2xl">Create Your Milestone</h3>
@@ -57,7 +62,9 @@ const milestonesStore = useMilestoneStore();
         </div>
 
         <!-- Step 3 Card -->
-        <div class="card w-full lg:w-1/4 bg-base-100 shadow-md md:min-h-[300px]">
+        <div
+          class="card w-full lg:w-1/4 bg-base-100 shadow-md md:min-h-[300px]"
+        >
           <div class="card-body items-center text-center">
             <v-icon scale="3" class="text-primary" name="bi-search" />
             <h3 class="card-title mt-4 text-2xl">Search & View</h3>
@@ -70,13 +77,8 @@ const milestonesStore = useMilestoneStore();
       </div>
     </article>
   </section>
-
-  <ul>
-    <li v-for="milestone in milestonesStore.allMilestones" :key="milestone.id">
-      <p>
-        {{ milestone.name }} - {{ milestone.startDate }} -
-        {{ milestone.frequency }}
-      </p>
-    </li>
-  </ul>
 </template>
+
+<script setup>
+import { SITE_NAME } from '@/constants';
+</script>
