@@ -9,14 +9,14 @@ const milestonesStore = useMilestoneStore();
   <section class="p-6">
     <article class="hero bg-base-200 min-h-screen rounded-lg">
       <div class="hero-content text-center">
-        <div class="max-w-lg">
-          <h1 class="text-5xl font-bold">Welcome to {{ SITE_NAME }}!</h1>
-          <p class="py-6 max-w-lg">
+        <div class="max-w-xl">
+          <h1 class="text-5xl font-bold">Welcome to <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary font-extrabold">{{ SITE_NAME }}</span>!</h1>
+          <p class="py-6">
             Track and celebrate every special milestone in your life. Start by
             logging in to create your first milestone and never miss a moment to
             remember!
           </p>
-          <a href="/login" class="btn btn-primary">Log In to Get Started</a>
+          <router-link to="/login" class="btn btn-primary">Log In to Get Started</router-link>
         </div>
       </div>
     </article>
