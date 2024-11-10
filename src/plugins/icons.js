@@ -4,8 +4,9 @@ import {
   BiPersonCircle,
   BiPlusCircle,
   BiSearch,
+  BiCalendarHeartFill
 } from 'oh-vue-icons/icons';
 
-addIcons(BiGithub, BiPersonCircle, BiPlusCircle, BiSearch);
+addIcons(BiGithub, BiPersonCircle, BiPlusCircle, BiSearch, BiCalendarHeartFill);
 
 export { OhVueIcon };
