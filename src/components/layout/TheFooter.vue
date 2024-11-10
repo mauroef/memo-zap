@@ -10,6 +10,7 @@
     <nav>
       <div class="grid grid-flow-col gap-4">
         <a
+        class=" hover:text-primary"
           rel="noopener"
           target="_blank"
           href="https://github.com/mauroef/memo-zap"
