@@ -1,9 +1,14 @@
 export default {
   allMilestones: (state) => state.milestones,
 
-  annualMilestones: (state) => state.milestones.filter((m) => m.frequency === 'annual'),
+  allMilestonesReversed: (state) => state.milestones.reverse(),
 
-  monthlyMilestones: (state) => state.milestones.filter((m) => m.frequency === 'monthly'),
+  annualMilestones: (state) =>
+    state.milestones.filter((m) => m.frequency === 'annual'),
 
-  dailyMilestones: (state) => state.milestones.filter((m) => m.frequency === 'diary'),
+  monthlyMilestones: (state) =>
+    state.milestones.filter((m) => m.frequency === 'monthly'),
+
+  dailyMilestones: (state) =>
+    state.milestones.filter((m) => m.frequency === 'diary'),
 };

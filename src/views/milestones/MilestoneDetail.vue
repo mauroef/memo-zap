@@ -1,6 +1,6 @@
 <template>
   <section class="max-w-7xl mx-auto p-6 min-h-screen">
-    <div class="card bg-neutral text-neutral-content w-96 mx-auto">
+    <div class="card bg-base-200 w-96 mx-auto">
       <div class="card-body items-center text-center">
         <h2 class="card-title">{{ selectedMilestone.name }}</h2>
         <p>{{ selectedMilestone.frequency }}</p>

@@ -39,10 +39,10 @@
     </div>
     <div class="divider divider-horizontal m-0 hidden md:flex"></div>
     <div>
-      <button class="btn bg-secondary text-white w-full md:w-auto">
-        <v-icon scale="1.4" name="bi-calendar-heart-fill" />
+      <router-link to="/milestones/new" class="btn btn-accent text-white w-full md:w-auto">
+        <v-icon scale="1.5" name="bi-calendar-heart-fill" />
         New
-      </button>
+      </router-link>
     </div>
   </article>
 </template>
