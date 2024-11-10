@@ -13,6 +13,7 @@
           :key="milestone.id"
         >
           <MilestoneItem
+            :id="milestone.id"
             :name="milestone.name"
             :startDate="milestone.startDate"
             :frequency="milestone.frequency"

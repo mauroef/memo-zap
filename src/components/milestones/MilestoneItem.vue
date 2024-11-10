@@ -7,18 +7,23 @@
       </h2>
       <p>{{ props.startDate }}</p>
       <div class="card-actions justify-end">
-        <button class="btn btn-primary">See Details</button>
+        <router-link class="btn btn-primary" :to="milestoneDetailsLink">See Details</router-link>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { defineProps } from 'vue';
+import { defineProps, computed } from 'vue';
 
 const props = defineProps({
+  id: String,
   name: String,
   startDate: String,
   frequency: String,
 });
+
+const milestoneDetailsLink = computed(() => {
+  return `/milestones/${props.id}`;
+})
 </script>
