@@ -1,6 +1,6 @@
 <template>
   <section
-    class="max-w-7xl mx-auto p-6"
+    class="max-w-7xl mx-auto p-6 min-h-screen"
     v-if="milestonesStore.allMilestones.length > 0"
   >
     <article>

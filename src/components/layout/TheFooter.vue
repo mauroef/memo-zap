@@ -1,6 +1,6 @@
 <template>
   <footer
-    class="footer footer-center bg-base-200 text-base-content rounded p-10"
+    class="footer footer-center bg-base-200 text-base-content p-10"
   >
     <nav class="grid grid-flow-col gap-4">
       <router-link to="/" class="link link-hover">Home</router-link>

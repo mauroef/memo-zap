@@ -2,7 +2,7 @@
   <div class="drawer">
     <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
     <div class="drawer-content flex flex-col">
-      <header class="navbar bg-accent w-full">
+      <header class="navbar bg-base-300 w-full">
         <div class="flex-none lg:hidden">
           <label
             for="my-drawer-3"
