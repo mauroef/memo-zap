@@ -3,7 +3,7 @@
     <div class="card-body">
       <h2 class="card-title">
         {{ props.name }}
-        <div class="badge badge-secondary">{{ props.frequency }}</div>
+        <div class="badge badge-secondary badge-outline">{{ props.frequency }}</div>
       </h2>
       <p>{{ props.startDate }}</p>
       <div class="card-actions justify-end">

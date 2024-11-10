@@ -4,7 +4,13 @@ import daisyui from 'daisyui';
 export default {
   content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {
-    extend: {},
+    extend: {
+      // topbar
+      spacing: {
+        '58': '58px',
+        '-152': '-152px',
+      },
+    },
   },
   plugins: [daisyui],
 };

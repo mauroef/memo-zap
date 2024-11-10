@@ -1,8 +1,8 @@
 <template>
   <div class="drawer">
     <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
-    <div class="drawer-content flex flex-col">
-      <header class="navbar bg-base-300 w-full">
+    <div class="drawer-content flex flex-col px-6">
+      <header class="navbar w-full rounded-box shadow-xl">
         <div class="flex-none lg:hidden">
           <label
             for="my-drawer-3"
@@ -13,7 +13,7 @@
               xmlns="http://www.w3.org/2000/svg"
               fill="white"
               viewBox="0 0 24 24"
-              class="text-white inline-block h-6 w-6 stroke-current"
+              class="inline-block h-6 w-6 stroke-current"
             >
               <path
                 stroke-linecap="round"
@@ -25,14 +25,14 @@
           </label>
         </div>
         <div class="flex-1">
-          <router-link to="/" class="btn btn-ghost text-xl text-white">{{
+          <router-link to="/" class="btn btn-ghost text-xl">{{
             SITE_NAME
           }}</router-link>
         </div>
         <div class="hidden flex-none lg:flex">
           <ul class="menu menu-horizontal gap-2">
-            <li><router-link class="text-white" to="/milestones">My Milestones</router-link></li>
-            <li><router-link class="text-white" to="/login">Login</router-link></li>
+            <li><router-link to="/milestones">My Milestones</router-link></li>
+            <li><router-link to="/login">Login</router-link></li>
           </ul>
           <div class="flex-none gap-2">
             <div class="dropdown dropdown-end">
@@ -50,7 +50,7 @@
               </div>
               <ul
                 tabindex="0"
-                class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+                class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow top-58 -left-152"
               >
                 <li><a>Logout</a></li>
               </ul>

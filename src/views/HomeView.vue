@@ -15,7 +15,7 @@
   </BaseHero>
 
   <div class="px-6 w-full">
-    <div class="divider divider-primary"></div>
+    <div class="divider divider-primary m-0"></div>
   </div>
 
   <section class="p-6">
