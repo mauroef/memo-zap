@@ -1,6 +1,6 @@
 <template>
   <section class="p-6">
-    <article class="hero bg-base-200 min-h-screen rounded-lg">
+    <article class="hero bg-base-200 min-h-screen rounded-lg" :class="{ 'bg-gradient-to-r from-blue-200 to-teal-200 dark:from-gray-800 dark:to-black': withBg }">
       <div class="hero-content text-center">
         <div class="max-w-xl">
           <h1 class="text-5xl font-bold"><slot name="title"></slot></h1>
@@ -30,5 +30,9 @@ const props = defineProps({
     type: String,
     default: '/',
   },
+  withBg: {
+    type: Boolean,
+    default: false,
+  }
 });
 </script>
