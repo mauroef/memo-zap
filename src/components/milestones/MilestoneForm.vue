@@ -1,6 +1,7 @@
 <template>
   <form @submit.prevent="onSubmit">
     <div class="flex flex-col gap-4">
+      <!-- name -->
       <label class="form-control w-full bg-base-300 p-3 rounded-md">
         <div class="label">
           <span class="label-text">What is your milestone name?</span>
@@ -16,10 +17,10 @@
           <span class="label-text-alt text-error">Name is required.</span>
         </div>
       </label>
-
+      <!-- start date -->
       <label class="form-control w-full bg-base-300 p-3 rounded-md">
         <div class="label">
-          <span class="label-text">Start Date</span>
+          <span class="label-text">Set your Start Date</span>
         </div>
         <input
           type="date"
@@ -34,7 +35,7 @@
           >
         </div>
       </label>
-
+      <!-- frequency -->
       <div class="form-control bg-base-300 p-3 rounded-md flex">
         <div class="label"><span class="label-text">Frecuency</span></div>
         <div class="flex flex-col justify-between md:flex-row flex-wrap">
@@ -75,6 +76,17 @@
           </div>
         </div>
       </div>
+      <!-- card color -->
+      <label class="form-control w-full bg-base-300 p-3 rounded-md">
+        <div class="label">
+          <span class="label-text">Pick a card color</span>
+        </div>
+        <select class="select select-bordered w-full" v-model="selectedColor" >
+          <option v-for="(_, name) in CARD" :key="name" :value="name" :selected="name === 'default'">
+            {{ name.charAt(0).toUpperCase() + name.slice(1) }}
+          </option>
+        </select>
+      </label>
 
       <button class="btn btn-primary">Create</button>
     </div>
@@ -85,6 +97,7 @@
 import { computed, reactive, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useMilestoneStore } from '@/store';
+import { CARD } from '@/constants';
 
 const today = new Date().toISOString().split('T')[0];
 
@@ -92,7 +105,10 @@ const milestone = reactive({
   name: '',
   startDate: '',
   frequency: '',
+  color: '',
 });
+
+const selectedColor = ref('default');
 
 const isSubmitted = ref(false);
 
@@ -116,9 +132,11 @@ const onSubmit = () => {
   if (!isFormValid.value) return;
 
   const formData = {
+    id: Date.now().toString(),
     name: milestone.name,
     startDate: milestone.startDate,
     frequency: milestone.frequency,
+    color: selectedColor.value,
   };
 
   milestoneStore.addMilestone(formData);

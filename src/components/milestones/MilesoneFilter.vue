@@ -1,8 +1,9 @@
 <template>
   <article class="bg-base-200 p-4 rounded-lg flex gap-4 flex-col md:flex-row">
+    <!-- Search -->
     <div class="flex-grow">
       <label class="input input-bordered flex items-center gap-2"
-        ><input type="text" class="grow" placeholder="Search" />
+        ><input type="search" class="grow" placeholder="Search" />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 16 16"
@@ -17,29 +18,44 @@
         </svg>
       </label>
     </div>
+    <!-- Radio buttons -->
     <div class="flex gap-2">
       <div class="form-control justify-center">
         <label class="label cursor-pointer flex gap-2">
           <span class="label-text">Annual</span>
-          <input type="radio" name="radio-10" class="radio radio-primary" />
+          <input type="radio" name="radio-filter" class="radio radio-primary" />
         </label>
       </div>
       <div class="form-control justify-center">
         <label class="label cursor-pointer flex gap-2">
           <span class="label-text">Monthly</span>
-          <input type="radio" name="radio-10" class="radio radio-primary" />
+          <input type="radio" name="radio-filter" class="radio radio-primary" />
         </label>
       </div>
       <div class="form-control justify-center">
         <label class="label cursor-pointer flex gap-2">
           <span class="label-text">Daily</span>
-          <input type="radio" name="radio-10" class="radio radio-primary" />
+          <input type="radio" name="radio-filter" class="radio radio-primary" />
+        </label>
+      </div>
+      <div class="form-control justify-center">
+        <label class="label cursor-pointer flex gap-2">
+          <span class="label-text">All</span>
+          <input
+            type="radio"
+            name="radio-filter"
+            class="radio radio-primary"
+            checked
+          />
         </label>
       </div>
     </div>
     <div class="divider divider-horizontal m-0 hidden md:flex"></div>
     <div>
-      <router-link to="/milestones/new" class="btn btn-accent text-white w-full md:w-auto">
+      <router-link
+        to="/milestones/new"
+        class="btn btn-accent text-white w-full md:w-auto"
+      >
         <v-icon scale="1.5" name="bi-calendar-heart-fill" />
         New
       </router-link>

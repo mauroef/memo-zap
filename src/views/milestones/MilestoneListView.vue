@@ -17,6 +17,7 @@
             :name="milestone.name"
             :startDate="milestone.startDate"
             :frequency="milestone.frequency"
+            :color="milestone.color"
           />
         </li>
       </ul>
