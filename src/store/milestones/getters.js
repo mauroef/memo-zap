@@ -12,5 +12,5 @@ export default {
     state.milestones.filter((m) => m.frequency === 'monthly'),
 
   dailyMilestones: (state) =>
-    state.milestones.filter((m) => m.frequency === 'diary'),
+    state.milestones.filter((m) => m.frequency === 'daily'),
 };

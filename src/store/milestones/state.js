@@ -32,7 +32,7 @@ export default () => ({
       id: 'm5',
       name: 'Annual Company Meeting',
       startDate: '2023-08-15',
-      frequency: 'diary',
+      frequency: 'daily',
       color: 'green',
     },
   ],

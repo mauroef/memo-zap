@@ -1,10 +1,10 @@
 <template>
   <div class="card bg-base-200 shadow-xl" :class="cardStyles.bg">
-    <div class="card-body">
-      <h2 class="card-title" :class="cardStyles.text">
+    <div class="card-body" :class="cardStyles.text">
+      <h2 class="card-title">
         {{ props.name }} - {{ props.frequency }}
       </h2>
-      <p :class="cardStyles.text">{{ props.startDate }}</p>
+      <milestone-description :startDate="props.startDate" :frequency="props.frequency"/>
       <div class="card-actions justify-end">
         <router-link
           class="btn"
@@ -21,6 +21,7 @@
 <script setup>
 import { computed } from 'vue';
 import { CARD } from '@/constants';
+import MilestoneDescription from '@/components/milestones/MilestoneDescription.vue';
 
 const props = defineProps({
   id: String,

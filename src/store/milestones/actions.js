@@ -28,7 +28,7 @@ export default {
       if (nextOccurrence < today) {
         nextOccurrence.setMonth(today.getMonth() + 1);
       }
-    } else if (milestone.frequency === 'diary') {
+    } else if (milestone.frequency === 'daily') {
       nextOccurrence = today;
     }
     return nextOccurrence;
