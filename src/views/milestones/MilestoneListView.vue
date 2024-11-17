@@ -24,7 +24,7 @@
     </article>
   </section>
   <section v-else>
-    <BaseHero
+    <base-hero
       cta
       cta-text="Create Your First Milestone"
       cta-link="/milestones/new"
@@ -34,7 +34,7 @@
         It looks like you haven’t set any milestones yet. Begin tracking and
         celebrating your special moments by clicking the button below!
       </template>
-    </BaseHero>
+    </base-hero>
   </section>
 </template>
 

@@ -1,7 +1,7 @@
 export const CARD = {
   amber: {
-    bg: 'bg-amber-100',
-    text: 'text-amber-700',
+    bg: 'bg-amber-100 dark:bg-amber-800',
+    text: 'text-amber-700 dark:text-amber-300',
     'button-bg': 'bg-amber-600',
     'button-bg-hover': 'hover:bg-amber-700',
     'button-border': 'border-amber-600',
@@ -9,8 +9,8 @@ export const CARD = {
     'button-text': 'text-amber-100',
   },
   blue: {
-    bg: 'bg-blue-100',
-    text: 'text-blue-700',
+    bg: 'bg-blue-100 dark:bg-blue-800',
+    text: 'text-blue-700 dark:text-blue-300',
     'button-bg': 'bg-blue-600',
     'button-bg-hover': 'hover:bg-blue-700',
     'button-border': 'border-blue-600',
@@ -27,8 +27,8 @@ export const CARD = {
     'button-text': '',
   },
   green: {
-    bg: 'bg-green-100',
-    text: 'text-green-700',
+    bg: 'bg-green-100 dark:bg-green-800',
+    text: 'text-green-700 dark:text-green-300',
     'button-bg': 'bg-green-600',
     'button-bg-hover': 'hover:bg-green-700',
     'button-border': 'border-green-600',
@@ -36,8 +36,8 @@ export const CARD = {
     'button-text': 'text-green-100',
   },
   lime: {
-    bg: 'bg-lime-100',
-    text: 'text-lime-700',
+    bg: 'bg-lime-100 dark:bg-lime-800',
+    text: 'text-lime-700 dark:text-lime-300',
     'button-bg': 'bg-lime-600',
     'button-bg-hover': 'hover:bg-lime-700',
     'button-border': 'border-lime-600',
@@ -45,8 +45,8 @@ export const CARD = {
     'button-text': 'text-lime-100',
   },
   pink: {
-    bg: 'bg-pink-100',
-    text: 'text-pink-700',
+    bg: 'bg-pink-100 dark:bg-pink-800',
+    text: 'text-pink-700 dark:text-pink-300',
     'button-bg': 'bg-pink-600',
     'button-bg-hover': 'hover:bg-pink-700',
     'button-border': 'border-pink-600',
@@ -54,8 +54,8 @@ export const CARD = {
     'button-text': 'text-pink-100',
   },
   red: {
-    bg: 'bg-red-100',
-    text: 'text-red-700',
+    bg: 'bg-red-100 dark:bg-red-800',
+    text: 'text-red-700 dark:text-red-300',
     'button-bg': 'bg-red-600',
     'button-bg-hover': 'hover:bg-red-700',
     'button-border': 'border-red-600',
@@ -63,8 +63,8 @@ export const CARD = {
     'button-text': 'text-red-100',
   },
   teal: {
-    bg: 'bg-teal-100',
-    text: 'text-teal-700',
+    bg: 'bg-teal-100 dark:bg-teal-800',
+    text: 'text-teal-700 dark:text-teal-300',
     'button-bg': 'bg-teal-600',
     'button-bg-hover': 'hover:bg-teal-700',
     'button-border': 'border-teal-600',
@@ -72,8 +72,8 @@ export const CARD = {
     'button-text': 'text-teal-100',
   },
   violet: {
-    bg: 'bg-violet-100',
-    text: 'text-violet-700',
+    bg: 'bg-violet-100 dark:bg-violet-800',
+    text: 'text-violet-700 dark:text-violet-300',
     'button-bg': 'bg-violet-600',
     'button-bg-hover': 'hover:bg-violet-700',
     'button-border': 'border-violet-600',

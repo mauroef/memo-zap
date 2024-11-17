@@ -1,5 +1,5 @@
 <template>
-  <BaseHero cta cta-text="Log In to Get Started" cta-link="/login" with-bg>
+  <base-hero cta cta-text="Log In to Get Started" cta-link="/login" with-bg>
     <template #title
       >Welcome to
       <span
@@ -12,7 +12,7 @@
       logging in to create your first milestone and never miss a moment to
       remember!</template
     >
-  </BaseHero>
+  </base-hero>
 
   <div class="px-6 w-full">
     <div class="divider divider-primary m-0"></div>
