@@ -10,6 +10,10 @@ export default {
         '58': '58px',
         '-152': '-152px',
       },
+      // hero
+      minHeight: {
+        '70dvh': '70dvh',
+      },
     },
   },
   plugins: [daisyui],
