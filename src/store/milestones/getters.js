@@ -1,7 +1,9 @@
 export default {
   allMilestones: (state) => state.milestones,
 
-  allMilestonesReversed: (state) => state.milestones.reverse(),
+  allMilestonesReversed: (state) => {
+    return [...state.allMilestones].reverse();
+  },
 
   annualMilestones: (state) =>
     state.milestones.filter((m) => m.frequency === 'annual'),
