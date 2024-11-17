@@ -7,7 +7,3 @@
     >
   </BaseHero>
 </template>
-
-<script setup>
-import BaseHero from '@/components/ui/BaseHero.vue';
-</script>

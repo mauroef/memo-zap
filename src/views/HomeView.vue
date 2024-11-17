@@ -76,5 +76,4 @@
 
 <script setup>
 import { SITE_NAME } from '@/constants';
-import BaseHero from '@/components/ui/BaseHero.vue';
 </script>

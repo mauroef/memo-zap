@@ -40,7 +40,6 @@
 
 <script setup>
 import { useMilestoneStore } from '@/store';
-import BaseHero from '@/components/ui/BaseHero.vue';
 import MilesoneFilter from '@/components/milestones/MilesoneFilter.vue';
 import MilestoneItem from '@/components/milestones/MilestoneItem.vue';
 
