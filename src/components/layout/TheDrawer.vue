@@ -16,7 +16,7 @@
       ></label>
       <ul class="menu bg-base-200 min-h-full w-80 p-4">
         <li><router-link to="/milestones">My Milestones</router-link></li>
-        <li><router-link to="/login">Login</router-link></li>
+        <li><router-link to="/auth">Login</router-link></li>
       </ul>
     </div>
   </div>

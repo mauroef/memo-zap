@@ -3,13 +3,23 @@ export default {
     this.milestones.push(milestone);
   },
 
-  updateMilestone(index, updatedMilestone) {
+  updateMilestone(updatedMilestone) {
+    const index = this.milestones.findIndex(
+      (m) => m.id === updatedMilestone.id
+    );
+    if (index === -1) {
+      console.warn(`Update: Milestone with ID ${updatedMilestone.id} not found.`);
+      return;
+    }
     this.milestones[index] = { ...this.milestones[index], ...updatedMilestone };
   },
 
   removeMilestone(id) {
-    const selectedMilestone = this.milestones.find((m) => m.id === id);
-    const index = this.milestones.indexOf(selectedMilestone);
+    const index = this.milestones.findIndex((m) => m.id === id);
+    if (index === -1) {
+      console.error(`Remove: Milestone with ID ${id} not found.`);
+      return;
+    }
     this.milestones.splice(index, 1);
   },
 

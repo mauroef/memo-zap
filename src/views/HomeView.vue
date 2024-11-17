@@ -1,5 +1,5 @@
 <template>
-  <base-hero cta cta-text="Log In to Get Started" cta-link="/login" with-bg>
+  <base-hero cta cta-text="Log In to Get Started" cta-link="/auth" with-bg>
     <template #title
       >Welcome to
       <span

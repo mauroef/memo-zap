@@ -5,6 +5,8 @@ export default {
     return [...state.allMilestones].reverse();
   },
 
+  milestoneById: (state) => (id) => state.milestones.find((m) => m.id === id),
+
   annualMilestones: (state) =>
     state.milestones.filter((m) => m.frequency === 'annual'),
 

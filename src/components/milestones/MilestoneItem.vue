@@ -2,9 +2,12 @@
   <div class="card bg-base-200 shadow-xl" :class="cardStyles.bg">
     <div class="card-body" :class="cardStyles.text">
       <h2 class="card-title">
-        {{ props.name }} - {{ props.frequency }}
+        {{ props.name }}
       </h2>
-      <milestone-description :startDate="props.startDate" :frequency="props.frequency"/>
+      <milestone-description
+        :startDate="props.startDate"
+        :frequency="props.frequency"
+      />
       <div class="card-actions justify-end">
         <router-link
           class="btn"

@@ -6,7 +6,7 @@
         <p>{{ selectedMilestone.frequency }}</p>
         <p>{{ selectedMilestone.startDate }}</p>
         <div class="card-actions justify-end">
-          <button class="btn btn-primary">Accept</button>
+          <button class="btn btn-info" @click="editMilestone">Edit</button>
           <button class="btn btn-outline btn-error" @click="removeMilestone">
             Remove
           </button>
@@ -42,6 +42,10 @@ const selectedMilestone = computed(() => {
 });
 
 const router = useRouter();
+
+const editMilestone = () => {
+  router.replace(`/milestones/${props.id}/edit`);
+};
 
 const removeMilestone = () => {
   milestonesStore.removeMilestone(props.id);

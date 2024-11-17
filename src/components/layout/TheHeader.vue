@@ -30,7 +30,7 @@
       <div class="hidden flex-none lg:flex">
         <ul class="menu menu-horizontal gap-2">
           <li><router-link to="/milestones">My Milestones</router-link></li>
-          <li><router-link to="/login">Login</router-link></li>
+          <li><router-link to="/auth">Login</router-link></li>
         </ul>
         <div class="flex-none gap-2">
           <div class="dropdown dropdown-end">
