@@ -7,7 +7,9 @@ export default {
     this.milestones[index] = { ...this.milestones[index], ...updatedMilestone };
   },
 
-  deleteMilestone(index) {
+  removeMilestone(id) {
+    const selectedMilestone = this.milestones.find((m) => m.id === id);
+    const index = this.milestones.indexOf(selectedMilestone);
     this.milestones.splice(index, 1);
   },
 
