@@ -4,4 +4,4 @@ export const FREQUENCY = {
   DAILY: 'daily',
   MONTHLY: 'monthly',
   ANNUAL: 'annual',
-}
+};

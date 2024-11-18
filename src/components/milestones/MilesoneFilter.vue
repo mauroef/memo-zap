@@ -3,7 +3,13 @@
     <!-- Search -->
     <div class="flex-grow">
       <label class="input input-bordered flex items-center gap-2"
-        ><input type="search" class="grow" placeholder="Search" />
+        ><input
+          type="search"
+          class="grow"
+          placeholder="Search"
+          v-model="localSearchQuery"
+          :disabled="disabledFilters"
+        />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 16 16"
@@ -20,32 +26,22 @@
     </div>
     <!-- Radio buttons -->
     <div class="flex gap-2">
-      <div class="form-control justify-center">
+      <div
+        class="form-control justify-center"
+        v-for="freq in frequencies"
+        :key="freq.value"
+      >
         <label class="label cursor-pointer flex gap-2">
-          <span class="label-text">Annual</span>
-          <input type="radio" name="radio-filter" class="radio radio-primary" />
-        </label>
-      </div>
-      <div class="form-control justify-center">
-        <label class="label cursor-pointer flex gap-2">
-          <span class="label-text">Monthly</span>
-          <input type="radio" name="radio-filter" class="radio radio-primary" />
-        </label>
-      </div>
-      <div class="form-control justify-center">
-        <label class="label cursor-pointer flex gap-2">
-          <span class="label-text">Daily</span>
-          <input type="radio" name="radio-filter" class="radio radio-primary" />
-        </label>
-      </div>
-      <div class="form-control justify-center">
-        <label class="label cursor-pointer flex gap-2">
-          <span class="label-text">All</span>
+          <span class="label-text">{{ freq.label }}</span>
           <input
             type="radio"
-            name="radio-filter"
+            :value="freq.value"
             class="radio radio-primary"
-            checked
+            name="radio-filter"
+            v-model="localFrequency"
+            @change="updateFilters"
+            :checked="freq.value === 'all' && !disabledFilters"
+            :disabled="disabledFilters"
           />
         </label>
       </div>
@@ -62,3 +58,52 @@
     </div>
   </article>
 </template>
+
+<script setup>
+import { ref, watch } from 'vue';
+import { FREQUENCY } from '@/constants';
+
+const props = defineProps({
+  filters: {
+    type: Object,
+    required: true,
+  },
+  disabledFilters: {
+    type: Boolean,
+    default: false,
+  }
+});
+
+const emit = defineEmits(['update:filters']);
+
+const localSearchQuery = ref(props.filters.searchQuery);
+const localFrequency = ref(props.filters.selectedFrequency);
+
+const frequencies = [
+  { label: 'All', value: 'all' },
+  ...Object.entries(FREQUENCY).map(([key, value]) => ({
+    label: key.charAt(0).toUpperCase() + key.slice(1).toLowerCase(),
+    value,
+  })),
+];
+
+let debounceTimeout = null;
+
+const handleSearchInput = () => {
+  if (debounceTimeout) {
+    clearTimeout(debounceTimeout);
+  }
+
+  debounceTimeout = setTimeout(() => {
+    emit('update:filters', { ...props.filters, searchQuery: localSearchQuery.value });
+  }, 300);
+};
+
+watch(localSearchQuery, () => {
+  handleSearchInput();
+});
+
+watch(localFrequency, (newFrequency) => {
+  emit('update:filters', { ...props.filters, selectedFrequency: newFrequency });
+});
+</script>

@@ -1,29 +1,6 @@
 <template>
-  <section
-    class="max-w-7xl mx-auto p-6 min-h-screen flex gap-6 flex-col"
-    v-if="milestonesStore.allMilestones.length > 0"
-  >
-    <article>
-      <MilesoneFilter />
-    </article>
-    <article>
-      <ul class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        <li
-          v-for="milestone in milestonesStore.allMilestonesReversed"
-          :key="milestone.id"
-        >
-          <MilestoneItem
-            :id="milestone.id"
-            :name="milestone.name"
-            :startDate="milestone.startDate"
-            :frequency="milestone.frequency"
-            :color="milestone.color"
-          />
-        </li>
-      </ul>
-    </article>
-  </section>
-  <section v-else>
+  <!-- no milestones -->
+  <section v-if="milestonesStore.allMilestones.length === 0" class="p-6">
     <base-hero
       cta
       cta-text="Create Your First Milestone"
@@ -36,12 +13,81 @@
       </template>
     </base-hero>
   </section>
+
+  <!-- no filtered milestones -->
+  <section
+    v-else-if="filteredMilestones.length === 0"
+    class="max-w-7xl mx-auto min-h-screen flex gap-6 flex-col p-6"
+  >
+    <MilesoneFilter v-model:filters="filters" :disabled-filters="true" />
+    <base-hero
+      cta
+      cta-text="Clear Filters"
+      :cta-action="filteredMilestones.length === 0 ? clearFilters : null"
+    >
+      <template #title>No Matches Found</template>
+      <template #description>
+        It seems we couldn’t find any milestones that match your search or
+        selected filters. Adjust your filters or try a different search term to
+        explore your milestones.
+      </template>
+    </base-hero>
+  </section>
+
+  <!-- all or filtered milestones -->
+  <section
+    v-else
+    class="max-w-7xl mx-auto min-h-screen flex gap-6 flex-col p-6"
+  >
+    <article>
+      <MilesoneFilter v-model:filters="filters" />
+    </article>
+    <article>
+      <ul class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <li v-for="milestone in filteredMilestones" :key="milestone.id">
+          <MilestoneItem
+            :id="milestone.id"
+            :name="milestone.name"
+            :startDate="milestone.startDate"
+            :frequency="milestone.frequency"
+            :color="milestone.color"
+          />
+        </li>
+      </ul>
+    </article>
+  </section>
 </template>
 
 <script setup>
+import { computed, ref } from 'vue';
 import { useMilestoneStore } from '@/store';
 import MilesoneFilter from '@/components/milestones/MilesoneFilter.vue';
 import MilestoneItem from '@/components/milestones/MilestoneItem.vue';
 
 const milestonesStore = useMilestoneStore();
+
+const filters = ref({
+  searchQuery: '',
+  selectedFrequency: 'all',
+});
+
+const filteredMilestones = computed(() => {
+  return milestonesStore.allMilestonesReversed.filter((milestone) => {
+    const matchesSearch = milestone.name
+      .toLowerCase()
+      .includes(filters.value.searchQuery.toLowerCase());
+    const matchesFrequency =
+      filters.value.selectedFrequency === 'all' ||
+      milestone.frequency === filters.value.selectedFrequency;
+
+    return matchesSearch && matchesFrequency;
+  });
+});
+
+const clearFilters = () => {
+  filters.value = {
+    searchQuery: '',
+    selectedFrequency: 'all',
+  };
+};
 </script>

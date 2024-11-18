@@ -1,18 +1,20 @@
 <template>
-  <base-hero cta cta-text="Log In to Get Started" cta-link="/auth" with-bg>
-    <template #title
-      >Welcome to
-      <span
-        class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary font-extrabold"
-        >{{ SITE_NAME }}</span
-      >!</template
-    >
-    <template #description
-      >Track and celebrate every special milestone in your life. Start by
-      logging in to create your first milestone and never miss a moment to
-      remember!</template
-    >
-  </base-hero>
+  <section class="p-6">
+    <base-hero cta cta-text="Log In to Get Started" cta-link="/auth" with-bg>
+      <template #title
+        >Welcome to
+        <span
+          class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary font-extrabold"
+          >{{ SITE_NAME }}</span
+        >!</template
+      >
+      <template #description
+        >Track and celebrate every special milestone in your life. Start by
+        logging in to create your first milestone and never miss a moment to
+        remember!</template
+      >
+    </base-hero>
+  </section>
 
   <div class="px-6 w-full">
     <div class="divider divider-primary m-0"></div>
