@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "dayjs": "^1.11.13",
+    "firebase": "^11.0.2",
     "oh-vue-icons": "^1.0.0-rc3",
     "pinia": "^2.2.6",
     "vue": "^3.5.12",

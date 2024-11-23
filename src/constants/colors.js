@@ -18,7 +18,7 @@ export const CARD = {
     'button-text': 'text-blue-100',
   },
   default: {
-    bg: '',
+    bg: 'bg-base-200',
     text: '',
     'button-bg': 'btn-primary',
     'button-bg-hover': '',

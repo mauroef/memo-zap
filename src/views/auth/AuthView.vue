@@ -1,7 +1,9 @@
 <template>
   <section class="p-6">
     <div class="hero bg-base-200 min-h-70dvh rounded-lg">
-      <div class="hero-content flex-col lg:flex-row-reverse gap-6 lg:gap-8 max-w-[1024px]">
+      <div
+        class="hero-content flex-col lg:flex-row-reverse gap-6 lg:gap-8 max-w-[1024px]"
+      >
         <!-- Headline -->
         <div class="text-center lg:text-left">
           <h1 class="text-5xl font-bold">Access Your Milestones!</h1>
@@ -16,11 +18,11 @@
             <!-- Tabs -->
             <div role="tablist" class="tabs tabs-boxed mb-6">
               <AuthTab
-                v-for="tab in tabs"
-                :key="tab"
-                :active="mode === tab.toLowerCase()"
-                @click="setActiveMode(tab.toLowerCase())"
-                :label="tab"
+                v-for="(value, key) in tabs"
+                :key="key"
+                :active="mode === key"
+                @click="setActiveMode(key)"
+                :label="value"
               />
             </div>
             <!-- Form Fields -->
@@ -51,6 +53,17 @@
           <div class="p-8">
             <button class="btn btn-block">Continue with Google</button>
           </div>
+          <div class="px-8">
+            <button class="btn btn-block" @click="getUserData">
+              Get User Data
+            </button>
+          </div>
+          <div class="px-8 py-2">
+            <button class="btn btn-block" @click="isAuthenticated">Is Auth?</button>
+          </div>
+          <div class="px-8 pb-8">
+            <button class="btn btn-block" @click="logout">Logout</button>
+          </div>
         </div>
       </div>
     </div>
@@ -59,14 +72,40 @@
 
 <script setup>
 import { ref, computed, watch } from 'vue';
+import { useAuthStore } from '@/store';
+import { AUTH_MODE } from '@/constants';
 import AuthTab from '@/components/auth/AuthTab.vue';
 import AuthInput from '@/components/auth/AuthInput.vue';
 
+// Store
+const authStore = useAuthStore();
+
+const getUserData = () => {
+  console.log({ user: authStore.getUser });
+  console.log({ uid: authStore.getUid });
+  console.log({ a: authStore.getEmail });
+  console.log({ b: authStore.getDisplayName });
+  console.log({ c: authStore.getPhotoURL });
+  console.log({ d: authStore.getCreationTime });
+  console.log({ e: authStore.getLastSignInTime });
+};
+
+const logout = () => {
+  authStore.logout();
+};
+
+const isAuthenticated = () => {
+  console.log({ isAuthenticated: authStore.isAuthenticated });
+};
+
 // Tabs
-const tabs = ['Log In', 'Sign Up'];
+const tabs = {
+  login: 'Log In',
+  signup: 'Sign Up',
+};
 
 // Reactive state
-const mode = ref('log in');
+const mode = ref(AUTH_MODE.LOGIN);
 const email = ref('');
 const password = ref('');
 const emailError = ref('');
@@ -74,7 +113,7 @@ const passwordError = ref('');
 
 // Computed property for submit button text
 const submitButtonText = computed(() =>
-  mode.value === 'log in' ? 'Login' : 'Sign Up'
+  mode.value === AUTH_MODE.LOGIN ? 'Login' : 'Sign Up'
 );
 
 // Set active mode and clear inputs/errors
@@ -84,23 +123,33 @@ const setActiveMode = (activeMode) => {
 };
 
 // Form submission logic
-const handleSubmit = () => {
+const handleSubmit = async () => {
   clearErrors();
-  let valid = true;
+  let isValid = true;
 
   if (!email.value || !/^\S+@\S+\.\S+$/.test(email.value)) {
     emailError.value = 'Please enter a valid email address.';
-    valid = false;
+    isValid = false;
   }
 
   if (!password.value || password.value.length < 6) {
     passwordError.value = 'Password must be at least 6 characters long.';
-    valid = false;
+    isValid = false;
   }
 
-  if (valid) {
-    console.log({ mode: mode.value, email: email.value, password: password.value });
-    clearFields();
+  if (isValid) {
+    if (mode.value === AUTH_MODE.LOGIN) {
+      await authStore.login(email.value, password.value);
+    } else {
+      await authStore.register(email.value, password.value);
+    }
+
+    if (authStore.error) {
+      // TODO: handle error in a better way
+      emailError.value = authStore.error;
+    } else {
+      clearFields();
+    }
   }
 };
 

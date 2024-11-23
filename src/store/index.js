@@ -1,4 +1,4 @@
-// import { useAuthStore } from './auth';
+import useAuthStore from './auth';
 import useMilestoneStore from './milestones';
 
-export { useMilestoneStore }
+export { useAuthStore, useMilestoneStore };

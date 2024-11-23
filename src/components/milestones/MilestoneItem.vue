@@ -1,5 +1,5 @@
 <template>
-  <div class="card bg-base-200 shadow-xl" :class="cardStyles.bg">
+  <div class="card shadow-xl" :class="cardStyles.bg">
     <div class="card-body" :class="cardStyles.text">
       <h2 class="card-title">
         {{ props.name }}
