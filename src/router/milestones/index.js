@@ -1,7 +1,4 @@
 import MilestoneListView from '@/views/milestones/MilestoneListView.vue';
-import MilestoneDetailView from '@/views/milestones/MilestoneDetail.vue';
-import MilestoneNewView from '@/views/milestones/MilestoneNewView.vue';
-import MilestoneEditView from '@/views/milestones/MilestoneEditView.vue';
 
 export default [
   {
@@ -12,18 +9,18 @@ export default [
   {
     path: '/milestones/:id',
     name: 'milestone-detail',
-    component: MilestoneDetailView,
+    component: () => import('@/views/milestones/MilestoneDetail.vue'),
     props: true,
   },
   {
     path: '/milestones/new',
     name: 'milestone-new',
-    component: MilestoneNewView,
+    component: () => import('@/views/milestones/MilestoneNewView.vue'),
   },
   {
     path: '/milestones/:id/edit',
     name: 'milestone-edit',
-    component: MilestoneEditView,
+    component: () => import('@/views/milestones/MilestoneEditView.vue'),
     props: true,
   },
 ];

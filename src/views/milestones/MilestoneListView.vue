@@ -1,5 +1,7 @@
 <template>
-  <!-- no milestones -->
+  <!-- Toast -->
+  <base-toast />
+  <!-- No milestones -->
   <section v-if="milestonesStore.allMilestones.length === 0" class="p-6">
     <base-hero
       cta
@@ -14,7 +16,7 @@
     </base-hero>
   </section>
 
-  <!-- no filtered milestones -->
+  <!-- No filtered milestones -->
   <section
     v-else-if="filteredMilestones.length === 0"
     class="max-w-7xl mx-auto min-h-screen flex gap-6 flex-col p-6"
@@ -34,7 +36,7 @@
     </base-hero>
   </section>
 
-  <!-- all or filtered milestones -->
+  <!-- All or filtered milestones -->
   <section
     v-else
     class="max-w-7xl mx-auto min-h-screen flex gap-6 flex-col p-6"
@@ -59,12 +61,23 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue';
-import { useMilestoneStore } from '@/store';
+import { computed, onMounted, ref } from 'vue';
+import { useMilestoneStore, useToastStore } from '@/store';
 import MilesoneFilter from '@/components/milestones/MilesoneFilter.vue';
 import MilestoneItem from '@/components/milestones/MilestoneItem.vue';
 
+//Store
 const milestonesStore = useMilestoneStore();
+const toastStore = useToastStore();
+
+onMounted(() => {
+  const toastMessage = toastStore.getMessage.value;
+  const toastType = toastStore.getType.value;
+
+  if (toastMessage !== '') {
+    toastStore.showToast(toastMessage, toastType);
+  }
+});
 
 const filters = ref({
   searchQuery: '',

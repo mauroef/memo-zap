@@ -8,6 +8,7 @@ import {
 export default {
   async register(email, password) {
     try {
+      this.loading = true;
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         email,
@@ -26,10 +27,13 @@ export default {
     } catch (err) {
       this.error = err.message;
       this.user = null;
+    } finally {
+      this.loading = false;
     }
   },
   async login(email, password) {
     try {
+      this.loading = true;
       const userCredential = await signInWithEmailAndPassword(
         auth,
         email,
@@ -48,6 +52,8 @@ export default {
     } catch (err) {
       this.error = err.message;
       this.user = null;
+    } finally {
+      this.loading = false;
     }
   },
   setUser(user) {

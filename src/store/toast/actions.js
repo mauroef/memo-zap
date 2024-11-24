@@ -11,8 +11,14 @@ export const useToastActions = (state) => {
     state.isVisible.value = true;
 
     setTimeout(() => {
-      state.isVisible.value = false;
+      clearToast();
     }, duration);
+  };
+
+  const clearToast = () => {
+    state.message.value = '';
+    state.type.value = TOAST.TYPE.INFO;
+    state.isVisible.value = false;
   };
 
   return {

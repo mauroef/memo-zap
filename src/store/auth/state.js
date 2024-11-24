@@ -8,4 +8,5 @@ export default () => ({
     lastSignInTime: null,
   },
   error: null,
+  loading: false,
 });

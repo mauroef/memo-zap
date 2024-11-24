@@ -21,6 +21,6 @@ export default {
     return state.user.lastSignInTime;
   },
   isAuthenticated(state) {
-    return !!state.user?.uid;
+    return state.user && state.user.uid != null;
   },
 };

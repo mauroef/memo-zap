@@ -5,7 +5,7 @@ const auth = getAuth(app);
 
 setPersistence(auth, browserLocalPersistence)
   .then(() => {
-    console.log('Session persistence set to browserLocalPersistence');
+    console.warn('Session persistence set to browserLocalPersistence');
   })
   .catch((error) => {
     console.error('Error setting session persistence:', error.message);
