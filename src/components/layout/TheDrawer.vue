@@ -14,8 +14,13 @@
         aria-label="close sidebar"
         class="drawer-overlay"
       ></label>
-      <ul class="menu bg-base-200 min-h-full w-80 p-4">
-        <li><router-link to="/milestones">My Milestones</router-link></li>
+      <ul v-if="isAuthenticated" class="menu bg-base-200 min-h-full w-80 p-4">
+        <li>
+          <router-link to="/milestones">My Milestones</router-link>
+        </li>
+        <li><button @click="authStore.logout">Logout</button></li>
+      </ul>
+      <ul v-else class="menu bg-base-200 min-h-full w-80 p-4">
         <li><router-link to="/auth">Login</router-link></li>
       </ul>
     </div>
@@ -23,7 +28,13 @@
 </template>
 
 <script setup>
+import { computed } from 'vue';
 import { RouterView } from 'vue-router';
+import { useAuthStore } from '@/store';
 import TheHeader from '@/components/layout/TheHeader.vue';
 import TheFooter from '@/components/layout/TheFooter.vue';
+
+const authStore = useAuthStore();
+
+const isAuthenticated = computed(() => authStore.isAuthenticated);
 </script>

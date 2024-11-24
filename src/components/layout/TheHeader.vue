@@ -24,15 +24,17 @@
       </div>
       <div class="flex-1 h-[50px]">
         <router-link to="/" class="btn btn-ghost text-xl">{{
-          SITE_NAME
+          siteName
         }}</router-link>
       </div>
       <div class="hidden flex-none lg:flex">
         <ul class="menu menu-horizontal gap-2 py-1.5">
-          <li><router-link to="/milestones">My Milestones</router-link></li>
-          <li><router-link to="/auth">Login</router-link></li>
+          <li v-if="isAuthenticated">
+            <router-link to="/milestones">My Milestones</router-link>
+          </li>
+          <li v-else><router-link to="/auth">Login</router-link></li>
         </ul>
-        <div class="flex-none gap-2">
+        <div v-if="isAuthenticated" class="flex-none gap-2">
           <div class="dropdown dropdown-end">
             <div
               tabindex="0"
@@ -40,17 +42,20 @@
               class="btn btn-ghost btn-circle avatar"
             >
               <div class="w-10 rounded-full">
-                <img
-                  alt="Tailwind CSS Navbar component"
-                  src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-                />
+                <img v-if="userPhotoURL" alt="Profile" :src="userPhotoURL" />
+                <div
+                  v-else
+                  class="w-10 aspect-square bg-primary flex align-center justify-center"
+                >
+                  <v-icon scale="2" color="white" name="bi-person-circle" />
+                </div>
               </div>
             </div>
             <ul
               tabindex="0"
               class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow top-58 -left-152"
             >
-              <li><a>Logout</a></li>
+              <li><button @click="authStore.logout">Logout</button></li>
             </ul>
           </div>
         </div>
@@ -60,5 +65,14 @@
 </template>
 
 <script setup>
+import { computed } from 'vue';
+import { useAuthStore } from '@/store';
 import { SITE_NAME } from '@/constants';
+
+const authStore = useAuthStore();
+
+const siteName = SITE_NAME;
+
+const isAuthenticated = computed(() => authStore.isAuthenticated);
+const userPhotoURL = computed(() => authStore.getPhotoURL);
 </script>

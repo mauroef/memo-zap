@@ -70,6 +70,7 @@ export default {
           creationTime: user.metadata.creationTime,
           lastSignInTime: user.metadata.lastSignInTime,
         });
+        localStorage.setItem('auth', JSON.stringify(user.uid));
       } else {
         this.logout();
       }
@@ -79,6 +80,7 @@ export default {
     try {
       await auth.signOut();
 
+      localStorage.removeItem('auth');
       this.setUser({
         uid: null,
         email: null,

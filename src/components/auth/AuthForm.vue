@@ -50,10 +50,6 @@
       <button class="btn btn-block btn-secondary btn-outline">
         Continue with Google
       </button>
-
-      <button class="btn btn-block btn-secondary btn-outline" @click="authStore.logout">
-        Continue with Google+
-      </button>
     </div>
   </div>
 </template>

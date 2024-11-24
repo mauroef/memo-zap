@@ -1,5 +1,5 @@
 import AuthView from '@/views/auth/AuthView.vue';
-import { useAuthStore, useToastStore } from '@/store';
+import { useToastStore } from '@/store';
 import { TOAST } from '@/constants';
 
 export default [
@@ -7,13 +7,11 @@ export default [
     path: '/auth',
     name: 'auth',
     component: AuthView,
-    beforeEnter: async (_, _2, next) => {
-      const authStore = useAuthStore();
+    beforeEnter: (_, _2, next) => {
       const toastStore = useToastStore();
+      const userFromLocalStorage = localStorage.getItem('auth');
 
-      await authStore.initAuthListener();
-
-      if (authStore.isAuthenticated) {
+      if (userFromLocalStorage) {
         toastStore.showToast('You are already logged in!', TOAST.TYPE.WARNING);
         next('/milestones');
       } else {
