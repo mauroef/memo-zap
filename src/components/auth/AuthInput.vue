@@ -18,8 +18,6 @@
 </template>
 
 <script setup>
-import { defineEmits } from 'vue';
-
 defineProps({
   modelValue: [String, Number],
   type: String,

@@ -1,4 +1,5 @@
 import useAuthStore from './auth';
 import useMilestoneStore from './milestones';
+import useToastStore from './toast';
 
-export { useAuthStore, useMilestoneStore };
+export { useAuthStore, useMilestoneStore, useToastStore };

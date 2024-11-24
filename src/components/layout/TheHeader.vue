@@ -22,13 +22,13 @@
           </svg>
         </label>
       </div>
-      <div class="flex-1">
+      <div class="flex-1 h-[50px]">
         <router-link to="/" class="btn btn-ghost text-xl">{{
           SITE_NAME
         }}</router-link>
       </div>
       <div class="hidden flex-none lg:flex">
-        <ul class="menu menu-horizontal gap-2">
+        <ul class="menu menu-horizontal gap-2 py-1.5">
           <li><router-link to="/milestones">My Milestones</router-link></li>
           <li><router-link to="/auth">Login</router-link></li>
         </ul>
