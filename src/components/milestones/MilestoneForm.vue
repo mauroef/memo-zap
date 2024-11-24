@@ -88,7 +88,7 @@
 <script setup>
 import { computed, reactive, ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { useMilestoneStore } from '@/store';
+import { useMilestoneStore, useAuthStore } from '@/store';
 import { CARD } from '@/constants';
 
 const today = new Date().toISOString().split('T')[0];
@@ -127,6 +127,7 @@ const isFormValid = computed(
 
 // store & router
 const milestoneStore = useMilestoneStore();
+const authStore = useAuthStore();
 const router = useRouter();
 
 // submit logic
@@ -135,8 +136,8 @@ const onSubmit = () => {
 
   if (!isFormValid.value) return;
 
+  const uid = authStore.user?.uid;
   const formData = {
-    id: isEditMode.value ? props.initialMilestone.id : Date.now().toString(),
     name: milestone.name,
     startDate: milestone.startDate,
     frequency: milestone.frequency,
@@ -144,9 +145,10 @@ const onSubmit = () => {
   };
 
   if (isEditMode.value) {
-    milestoneStore.updateMilestone(formData);
+    const milestoneId = props.initialMilestone.id;
+    milestoneStore.updateMilestone(uid, milestoneId, formData);
   } else {
-    milestoneStore.addMilestone(formData);
+    milestoneStore.addMilestone(uid, formData);
   }
 
   router.replace('/milestones');

@@ -1,6 +1,16 @@
 import app from './config';
 import auth from './auth';
-import db from './firestore';
+import {
+  db,
+  collection,
+  query,
+  getDocs,
+  onSnapshot,
+  addDoc,
+  deleteDoc,
+  doc,
+  updateDoc,
+} from './firestore';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -11,6 +21,14 @@ export {
   app,
   auth,
   db,
+  collection,
+  query,
+  getDocs,
+  onSnapshot,
+  addDoc,
+  deleteDoc,
+  doc,
+  updateDoc,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   onAuthStateChanged,

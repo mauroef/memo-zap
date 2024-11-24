@@ -1,46 +1,93 @@
+import {
+  db,
+  collection,
+  query,
+  doc,
+  addDoc,
+  deleteDoc,
+  updateDoc,
+  getDocs,
+  onSnapshot,
+} from '@/plugins/firebase';
+
+let unsubscribeMilestones = null;
+
 export default {
-  addMilestone(milestone) {
-    this.milestones.push(milestone);
+  async fetchMilestones(uid) {
+    this.loading = true;
+    this.error = null;
+    try {
+      const milestonesRef = collection(db, `users/${uid}/milestones`);
+      const q = query(milestonesRef);
+      const querySnapshot = await getDocs(q);
+
+      this.milestones = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+    } catch (error) {
+      this.error = 'Error fetching milestones';
+      console.error('Error fetching milestones:', error);
+    } finally {
+      this.loading = false;
+    }
   },
 
-  updateMilestone(updatedMilestone) {
-    const index = this.milestones.findIndex(
-      (m) => m.id === updatedMilestone.id
+  async listenToMilestones(uid) {
+    if (unsubscribeMilestones) {
+      unsubscribeMilestones();
+    }
+    const milestonesRef = collection(db, `users/${uid}/milestones`);
+    unsubscribeMilestones = onSnapshot(
+      milestonesRef,
+      (snapshot) => {
+        this.milestones = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+      },
+      (error) => {
+        console.error('Error in listener:', error);
+        this.error = 'Error listening to milestones';
+      }
     );
-    if (index === -1) {
-      console.warn(`Update: Milestone with ID ${updatedMilestone.id} not found.`);
-      return;
-    }
-    this.milestones[index] = { ...this.milestones[index], ...updatedMilestone };
   },
 
-  removeMilestone(id) {
-    const index = this.milestones.findIndex((m) => m.id === id);
-    if (index === -1) {
-      console.error(`Remove: Milestone with ID ${id} not found.`);
-      return;
+  clearMilestones() {
+    if (unsubscribeMilestones) {
+      unsubscribeMilestones();
+      unsubscribeMilestones = null;
     }
-    this.milestones.splice(index, 1);
+    this.milestones = [];
   },
 
-  calculateNextOccurrence(milestone) {
-    const today = new Date();
-    const startDate = new Date(milestone.startDate);
-    let nextOccurrence = new Date(startDate);
-
-    if (milestone.frequency === 'annual') {
-      nextOccurrence.setFullYear(today.getFullYear());
-      if (nextOccurrence < today) {
-        nextOccurrence.setFullYear(today.getFullYear() + 1);
-      }
-    } else if (milestone.frequency === 'monthly') {
-      nextOccurrence.setMonth(today.getMonth());
-      if (nextOccurrence < today) {
-        nextOccurrence.setMonth(today.getMonth() + 1);
-      }
-    } else if (milestone.frequency === 'daily') {
-      nextOccurrence = today;
+  async addMilestone(uid, milestone) {
+    try {
+      const milestonesRef = collection(db, `users/${uid}/milestones`);
+      await addDoc(milestonesRef, milestone);
+    } catch (error) {
+      this.error = 'Error adding milestone';
+      console.error('Error adding milestone:', error);
     }
-    return nextOccurrence;
+  },
+
+  async updateMilestone(uid, milestoneId, updates) {
+    try {
+      const milestoneRef = doc(db, `users/${uid}/milestones/${milestoneId}`);
+      await updateDoc(milestoneRef, updates);
+    } catch (error) {
+      this.error = 'Error updating milestone';
+      console.error('Error updating milestone:', error);
+    }
+  },
+
+  async deleteMilestone(uid, milestoneId) {
+    try {
+      const milestoneRef = doc(db, `users/${uid}/milestones/${milestoneId}`);
+      await deleteDoc(milestoneRef);
+    } catch (error) {
+      this.error = 'Error deleting milestone';
+      console.error('Error deleting milestone:', error);
+    }
   },
 };

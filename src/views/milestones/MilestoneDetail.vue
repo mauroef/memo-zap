@@ -7,8 +7,8 @@
         <p>{{ selectedMilestone.startDate }}</p>
         <div class="card-actions justify-end">
           <button class="btn btn-info" @click="editMilestone">Edit</button>
-          <button class="btn btn-outline btn-error" @click="removeMilestone">
-            Remove
+          <button class="btn btn-outline btn-error" @click="deleteMilestone">
+            Delete
           </button>
         </div>
       </div>
@@ -25,7 +25,7 @@
 
 <script setup>
 import { computed } from 'vue';
-import { useMilestoneStore } from '@/store';
+import { useMilestoneStore, useAuthStore } from '@/store';
 import { useRouter } from 'vue-router';
 
 const props = defineProps({
@@ -34,11 +34,14 @@ const props = defineProps({
   },
 });
 
+const authStore = useAuthStore();
+const uid = authStore.user.uid;
+
 const milestonesStore = useMilestoneStore();
 const selectedMilestone = computed(() => {
   return milestonesStore.allMilestones.find(
     (milestone) => milestone.id === props.id
-  );
+  );S
 });
 
 const router = useRouter();
@@ -47,8 +50,8 @@ const editMilestone = () => {
   router.replace(`/milestones/${props.id}/edit`);
 };
 
-const removeMilestone = () => {
-  milestonesStore.removeMilestone(props.id);
+const deleteMilestone = () => {
+  milestonesStore.deleteMilestone(uid, props.id);
   router.replace('/milestones');
 };
 </script>

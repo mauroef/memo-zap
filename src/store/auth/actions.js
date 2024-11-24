@@ -5,6 +5,8 @@ import {
   onAuthStateChanged,
 } from '@/plugins/firebase';
 
+import { useMilestoneStore } from '@/store';
+
 export default {
   async register(email, password) {
     try {
@@ -61,6 +63,8 @@ export default {
   },
   initAuthListener() {
     onAuthStateChanged(auth, (user) => {
+      const milestoneStore = useMilestoneStore();
+
       if (user) {
         this.setUser({
           uid: user.uid,
@@ -71,13 +75,20 @@ export default {
           lastSignInTime: user.metadata.lastSignInTime,
         });
         localStorage.setItem('auth', JSON.stringify(user.uid));
+
+        milestoneStore.listenToMilestones(user.uid);
       } else {
+        milestoneStore.milestones = [];
+
         this.logout();
       }
     });
   },
   async logout() {
     try {
+      const milestoneStore = useMilestoneStore();
+      milestoneStore.clearMilestones();
+
       await auth.signOut();
 
       localStorage.removeItem('auth');
