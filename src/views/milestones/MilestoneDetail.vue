@@ -41,7 +41,7 @@ const milestonesStore = useMilestoneStore();
 const selectedMilestone = computed(() => {
   return milestonesStore.allMilestones.find(
     (milestone) => milestone.id === props.id
-  );S
+  );
 });
 
 const router = useRouter();

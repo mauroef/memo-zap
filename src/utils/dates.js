@@ -70,6 +70,22 @@ export const calculateNextAnniversaryNumber = (startDate) => {
   return yearsPassed + 1;
 };
 
+export const calculateAnnualMilestone = (startDate) => {
+  const start = dayjs(startDate);
+
+  const anniversaryNumber = calculateNextAnniversaryNumber(startDate);
+  const nextAnniversary = start.add(anniversaryNumber, 'year');
+
+  const remainingDays = nextAnniversary.diff(today, 'day');
+
+  const formattedMilestoneTime = withNumberSuffix(anniversaryNumber);
+
+  return {
+    remainingDays,
+    formattedMilestoneTime,
+  };
+};
+
 export const withNumberSuffix = (number) => {
   if (number >= 11 && number <= 13) {
     return `${number}th`;

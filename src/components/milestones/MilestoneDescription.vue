@@ -1,12 +1,23 @@
 <template>
+  <!-- daily -->
   <p v-if="props.frequency === FREQUENCY.DAILY">
     You achieved this milestone
     <span class="font-bold">{{ formattedMilestoneTime }}</span>
     ago.
   </p>
+  <!-- monthly -->
+  <p v-else-if="props.frequency === FREQUENCY.MONTHLY && remainingDays === 0">
+    Today is the big day! 🎉 Time to celebrate your
+    <span class="font-bold">{{ formattedMilestoneTime }}</span> monthly milestone!
+  </p>
   <p v-else-if="props.frequency === FREQUENCY.MONTHLY">
     Only <span class="font-bold">{{ remainingDays }} days</span> left until your
     <span class="font-bold">{{ formattedMilestoneTime }}</span> milestone.
+  </p>
+  <!-- annual -->
+  <p v-else-if="props.frequency === FREQUENCY.ANNUAL && remainingDays === 0">
+    Big day alert! 🚀 Your
+    <span class="font-bold">{{ formattedMilestoneTime }}</span> milestone anniversary is happening today!
   </p>
   <p v-else-if="props.frequency === FREQUENCY.ANNUAL">
     <span class="font-bold">{{ remainingDays }}</span> days to go until your
@@ -18,9 +29,9 @@
 <script setup>
 import { FREQUENCY } from '@/constants';
 import {
+  calculateAnnualMilestone,
   calculateDaysToNextMonthiversary,
   calculateNextMonthiversaryNumber,
-  calculateNextAnniversaryNumber,
   calculateDiffBetween,
   formatDaysToYearsMonthsAndDays,
   withNumberSuffix,
@@ -51,11 +62,9 @@ switch (props.frequency) {
   }
 
   case FREQUENCY.ANNUAL: {
-    const days = calculateDiffBetween('day', props.startDate);
-    const years = Math.floor(days / 365);
-    remainingDays = days - (years * 365);
-    const anniversaryNumber = calculateNextAnniversaryNumber(props.startDate);
-    formattedMilestoneTime = withNumberSuffix(anniversaryNumber);
+    const result = calculateAnnualMilestone(props.startDate);
+    remainingDays = result.remainingDays;
+    formattedMilestoneTime = result.formattedMilestoneTime;
     break;
   }
 
