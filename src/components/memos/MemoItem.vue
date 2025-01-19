@@ -4,7 +4,7 @@
       <h2 class="card-title">
         {{ props.name }}
       </h2>
-      <milestone-description
+      <memo-description
         :startDate="props.startDate"
         :frequency="props.frequency"
       />
@@ -12,7 +12,7 @@
         <router-link
           class="btn"
           :class="cardStyles.button"
-          :to="milestoneDetailsLink"
+          :to="memoDetailsLink"
         >
           See Details
         </router-link>
@@ -24,7 +24,7 @@
 <script setup>
 import { computed } from 'vue';
 import { CARD } from '@/constants';
-import MilestoneDescription from '@/components/milestones/MilestoneDescription.vue';
+import MemoDescription from '@/components/memos/MemoDescription.vue';
 
 const props = defineProps({
   id: String,
@@ -43,7 +43,7 @@ const cardStyles = computed(() => {
   };
 });
 
-const milestoneDetailsLink = computed(() => {
-  return `/milestones/${props.id}`;
+const memoDetailsLink = computed(() => {
+  return `/memos/${props.id}`;
 });
 </script>

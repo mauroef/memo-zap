@@ -1,5 +1,5 @@
 export default () => ({
-  milestones: [],
+  memos: [],
   loading: false,
   error: null,
 });

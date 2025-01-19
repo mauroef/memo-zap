@@ -49,7 +49,7 @@
     <div class="divider divider-horizontal m-0 hidden md:flex"></div>
     <div>
       <router-link
-        to="/milestones/new"
+        to="/memos/new"
         class="btn btn-accent text-white w-full md:w-auto"
       >
         <v-icon scale="1.5" name="bi-calendar-heart-fill" />

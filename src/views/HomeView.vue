@@ -9,8 +9,8 @@
         >!</template
       >
       <template #description
-        >Track and celebrate every special milestone in your life. Start by
-        logging in to create your first milestone and never miss a moment to
+        >Track and celebrate every special memo in your life. Start by
+        logging in to create your first memo and never miss a moment to
         remember!</template
       >
     </base-hero>
@@ -23,9 +23,9 @@
   <section class="p-6">
     <article class="bg-base-200 p-8 rounded-lg">
       <div class="container mx-auto text-center mb-10 rounded-lg">
-        <h2 class="text-4xl font-bold">Get Started with Your Milestones</h2>
+        <h2 class="text-4xl font-bold">Get Started with Your Memos</h2>
         <p class="mt-4 text-lg">
-          Follow these simple steps to create and track your milestones with
+          Follow these simple steps to create and track your memos with
           ease.
         </p>
       </div>
@@ -38,7 +38,7 @@
             <v-icon scale="3" class="text-primary" name="bi-person-circle" />
             <h3 class="card-title mt-4 text-2xl">Login</h3>
             <p class="mt-2">
-              Sign in to get started and access all your milestones in one
+              Sign in to get started and access all your memos in one
               place.
             </p>
           </div>
@@ -50,9 +50,9 @@
         >
           <div class="card-body items-center text-center">
             <v-icon scale="3" class="text-primary" name="bi-plus-circle" />
-            <h3 class="card-title mt-4 text-2xl">Create Your Milestone</h3>
+            <h3 class="card-title mt-4 text-2xl">Create Your Memo</h3>
             <p class="mt-2">
-              Easily add new milestones to track anniversaries, events, and
+              Easily add new memos to track anniversaries, events, and
               more.
             </p>
           </div>
@@ -66,7 +66,7 @@
             <v-icon scale="3" class="text-primary" name="bi-search" />
             <h3 class="card-title mt-4 text-2xl">Search & View</h3>
             <p class="mt-2">
-              Quickly search and view your milestones whenever you need to check
+              Quickly search and view your memos whenever you need to check
               them.
             </p>
           </div>

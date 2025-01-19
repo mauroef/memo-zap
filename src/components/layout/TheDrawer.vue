@@ -16,7 +16,7 @@
       ></label>
       <ul v-if="isAuthenticated" class="menu bg-base-200 min-h-full w-80 p-4">
         <li>
-          <router-link to="/milestones">My Milestones</router-link>
+          <router-link to="/memos">My Memos</router-link>
         </li>
         <li><button @click="authStore.logout">Logout</button></li>
       </ul>

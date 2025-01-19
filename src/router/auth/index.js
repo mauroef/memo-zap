@@ -13,7 +13,7 @@ export default [
 
       if (userFromLocalStorage) {
         toastStore.showToast('You are already logged in!', TOAST.TYPE.WARNING);
-        next('/milestones');
+        next('/memos');
       } else {
         next();
       }

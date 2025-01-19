@@ -30,7 +30,7 @@
       <div class="hidden flex-none lg:flex">
         <ul class="menu menu-horizontal gap-2 py-1.5">
           <li v-if="isAuthenticated">
-            <router-link to="/milestones">My Milestones</router-link>
+            <router-link to="/memos">My Memos</router-link>
           </li>
           <li v-else><router-link to="/auth">Login</router-link></li>
         </ul>

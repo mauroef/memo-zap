@@ -70,7 +70,7 @@ export const calculateNextAnniversaryNumber = (startDate) => {
   return yearsPassed + 1;
 };
 
-export const calculateAnnualMilestone = (startDate) => {
+export const calculateAnnualMemo = (startDate) => {
   const start = dayjs(startDate);
 
   const anniversaryNumber = calculateNextAnniversaryNumber(startDate);
@@ -78,11 +78,11 @@ export const calculateAnnualMilestone = (startDate) => {
 
   const remainingDays = nextAnniversary.diff(today, 'day');
 
-  const formattedMilestoneTime = withNumberSuffix(anniversaryNumber);
+  const formattedMemoTime = withNumberSuffix(anniversaryNumber);
 
   return {
     remainingDays,
-    formattedMilestoneTime,
+    formattedMemoTime,
   };
 };
 

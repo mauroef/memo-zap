@@ -4,7 +4,7 @@ import actions from './actions';
 import getters from './getters';
 import state from './state';
 
-export default defineStore('milestones', {
+export default defineStore('memos', {
   state,
   getters,
   actions,

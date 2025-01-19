@@ -8,7 +8,7 @@
       >
         <!-- Headline -->
         <div class="text-center lg:text-left">
-          <h1 class="text-5xl font-bold">Access Your Milestones!</h1>
+          <h1 class="text-5xl font-bold">Access Your Memos!</h1>
           <p class="py-6">
             Sign in or create an account to start tracking and celebrating your
             special moments. Your journey starts here!

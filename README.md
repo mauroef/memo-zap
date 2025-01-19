@@ -1,6 +1,6 @@
 # memo-zap
 
-Memo-Zap is a simple and intuitive app that helps you create reminders for important dates such as anniversaries, birthdays, and other milestones.
+Memo-Zap is a simple and intuitive app that helps you create reminders for important dates such as anniversaries, birthdays, and other memos.
 
 ## Technologies Used
 

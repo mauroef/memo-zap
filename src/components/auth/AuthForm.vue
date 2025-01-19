@@ -130,7 +130,7 @@ const handleAuthentication = async () => {
     TOAST.TYPE.SUCCESS
   );
   clearFields();
-  router.replace('/milestones');
+  router.replace('/memos');
   return true;
 };
 
