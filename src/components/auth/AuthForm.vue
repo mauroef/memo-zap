@@ -1,5 +1,4 @@
 <template>
-  <!-- <base-toast type="warning">hola desde toast</base-toast> -->
   <div class="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
     <form @submit.prevent="handleSubmit" class="card-body">
       <!-- Tabs -->
@@ -47,8 +46,13 @@
 
     <!-- Google Button -->
     <div class="p-8">
-      <button class="btn btn-block btn-secondary btn-outline">
-        Continue with Google
+      <button
+        class="btn btn-block btn-secondary btn-outline"
+        @click="handleGoogleSignIn"
+        :disabled="isButtonDisabled"
+      >
+        <span v-if="isButtonDisabled" class="loading loading-spinner"></span
+        >{{ googleButtonText }}
       </button>
     </div>
   </div>
@@ -88,6 +92,9 @@ const submitButtonText = computed(() =>
 );
 const buttonText = computed(() =>
   authStore.loading ? 'Submitting...' : submitButtonText
+);
+const googleButtonText = computed(() =>
+  authStore.loading ? 'Signing in...' : 'Continue with Google'
 );
 const isButtonDisabled = computed(() => authStore.loading);
 
@@ -159,4 +166,13 @@ const clearErrors = () => {
 // Watch inputs for dynamic error clearing
 watch(email, () => (emailError.value = ''));
 watch(password, () => (passwordError.value = ''));
+
+const handleGoogleSignIn = async () => {
+  await authStore.signInWithGoogle();
+
+  toastStore.showToast('Signed in successfully!', TOAST.TYPE.SUCCESS);
+
+  router.replace('/memos');
+  return true;
+};
 </script>

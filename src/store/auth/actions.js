@@ -3,6 +3,8 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
+  GoogleAuthProvider,
+  signInWithPopup,
 } from '@/plugins/firebase';
 
 import { useMemoStore } from '@/store';
@@ -50,6 +52,31 @@ export default {
         creationTime: user.metadata.creationTime,
         lastSignInTime: user.metadata.lastSignInTime,
       };
+      this.error = null;
+    } catch (err) {
+      this.error = err.message;
+      this.user = null;
+    } finally {
+      this.loading = false;
+    }
+  },
+  async signInWithGoogle() {
+    const provider = new GoogleAuthProvider();
+
+    try {
+      this.loading = true;
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+
+      this.user = {
+        uid: user.uid,
+        email: user.email,
+        displayName: user.displayName,
+        photoURL: user.photoURL,
+        creationTime: user.metadata.creationTime,
+        lastSignInTime: user.metadata.lastSignInTime,
+      };
+
       this.error = null;
     } catch (err) {
       this.error = err.message;
