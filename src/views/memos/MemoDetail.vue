@@ -1,6 +1,6 @@
 <template>
   <section class="max-w-7xl mx-auto p-6 min-h-screen" v-if="selectedMemo">
-    <div class="card bg-base-200 w-96 mx-auto">
+    <div class="card bg-base-200 w-96 mx-auto max-w-full">
       <div class="card-body items-center text-center">
         <h2 class="card-title">{{ selectedMemo.name }}</h2>
         <p>{{ selectedMemo.frequency }}</p>
@@ -15,7 +15,7 @@
     </div>
   </section>
   <section class="max-w-7xl mx-auto p-6 min-h-screen" v-else>
-    <div class="card bg-base-200 w-96 mx-auto">
+    <div class="card bg-base-200 w-96 mx-auto max-w-full">
       <div class="card-body items-center text-center">
         <h2 class="card-title">Memo not found</h2>
       </div>

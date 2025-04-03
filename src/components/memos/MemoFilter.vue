@@ -25,7 +25,7 @@
       </label>
     </div>
     <!-- Radio buttons -->
-    <div class="flex gap-2">
+    <div class="flex flex-wrap gap-2">
       <div
         class="form-control justify-center"
         v-for="freq in frequencies"
