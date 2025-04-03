@@ -20,6 +20,9 @@ const router = createRouter({
     ...authRoutes,
     ...MemoRoutes,
   ],
+  scrollBehavior() {
+    return { top: 0, behavior: 'smooth' };
+  },
 });
 
 export default router;

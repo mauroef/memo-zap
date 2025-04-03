@@ -9,6 +9,7 @@ import {
   BiCheckCircle,
   BiXCircle,
   BiInfoCircle,
+  BiArrowLeftCircle,
 } from 'oh-vue-icons/icons';
 
 addIcons(
@@ -20,7 +21,8 @@ addIcons(
   BiExclamationCircle,
   BiCheckCircle,
   BiXCircle,
-  BiInfoCircle
+  BiInfoCircle,
+  BiArrowLeftCircle
 );
 
 export { OhVueIcon };
