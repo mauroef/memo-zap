@@ -67,12 +67,13 @@
 
 <script setup>
 import { computed, onMounted, ref } from 'vue';
-import { useMemoStore, useToastStore } from '@/store';
+import { useAuthStore,useMemoStore, useToastStore } from '@/store';
 import MemoFilter from '@/components/memos/MemoFilter.vue';
 import MemoItem from '@/components/memos/MemoItem.vue';
 import BaseLoader from '@/components/ui/BaseLoader.vue';
 
 // Store
+const authStore = useAuthStore();
 const memosStore = useMemoStore();
 const toastStore = useToastStore();
 const loading = ref(true);
@@ -88,20 +89,20 @@ onMounted(async () => {
   await fetchMemos();
 });
 
-// Función asíncrona para obtener los memos
+// Asynchronous function to fetch memos
 const fetchMemos = async () => {
-  loading.value = true; // Indicar que está cargando
-  await memosStore.fetchMemos(); // Llamar a la store para obtener los memos
-  loading.value = false; // Terminar carga
+  loading.value = true;
+  await memosStore.fetchMemos(authStore.getUid);
+  loading.value = false;
 };
 
-// Filtros
+// Filters
 const filters = ref({
   searchQuery: '',
   selectedFrequency: 'all',
 });
 
-// Computed para filtrar los memos
+// Computed property to filter memos
 const filteredMemos = computed(() => {
   return memosStore.allMemosReversed.filter((memo) => {
     const matchesSearch = memo.name
@@ -115,11 +116,12 @@ const filteredMemos = computed(() => {
   });
 });
 
-// Función para limpiar filtros
+// Function to clear filters
 const clearFilters = () => {
   filters.value = {
     searchQuery: '',
     selectedFrequency: 'all',
   };
 };
+
 </script>

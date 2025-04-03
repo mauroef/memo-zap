@@ -14,10 +14,11 @@ let unsubscribeMemos = null;
 
 export default {
   async fetchMemos(uid) {
+    let userId = uid || JSON.parse(localStorage.getItem('auth'));
     this.loading = true;
     this.error = null;
     try {
-      const memosRef = collection(db, `users/${uid}/memos`);
+      const memosRef = collection(db, `users/${userId}/memos`);
       const q = query(memosRef);
       const querySnapshot = await getDocs(q);
 

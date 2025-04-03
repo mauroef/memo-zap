@@ -1,32 +1,11 @@
 <template>
-  <!-- daily -->
-  <p v-if="props.frequency === FREQUENCY.DAILY">
-    You achieved this memo
-    <span class="font-bold">{{ formattedMemoTime }}</span>
-    ago.
-  </p>
-  <!-- monthly -->
-  <p v-else-if="props.frequency === FREQUENCY.MONTHLY && remainingDays === 0">
-    Today is the big day! 🎉 Time to celebrate your
-    <span class="font-bold">{{ formattedMemoTime }}</span> monthly memo!
-  </p>
-  <p v-else-if="props.frequency === FREQUENCY.MONTHLY">
-    Only <span class="font-bold">{{ remainingDays }} days</span> left until your
-    <span class="font-bold">{{ formattedMemoTime }}</span> memo.
-  </p>
-  <!-- annual -->
-  <p v-else-if="props.frequency === FREQUENCY.ANNUAL && remainingDays === 0">
-    Big day alert! 🚀 Your
-    <span class="font-bold">{{ formattedMemoTime }}</span> memo anniversary is happening today!
-  </p>
-  <p v-else-if="props.frequency === FREQUENCY.ANNUAL">
-    <span class="font-bold">{{ remainingDays }}</span> days to go until your
-    <span class="font-bold">{{ formattedMemoTime }}</span> memo
-    anniversary!
+  <p v-if="memoMessage">
+    {{ memoMessage }}
   </p>
 </template>
 
 <script setup>
+import { computed } from 'vue';
 import { FREQUENCY } from '@/constants';
 import {
   calculateAnnualMemo,
@@ -42,33 +21,51 @@ const props = defineProps({
   frequency: String,
 });
 
-let remainingDays;
-let formattedMemoTime;
+const remainingDays = computed(() => {
+  switch (props.frequency) {
+    case FREQUENCY.DAILY:
+      return calculateDiffBetween('day', props.startDate);
+    case FREQUENCY.MONTHLY:
+      return calculateDaysToNextMonthiversary(props.startDate);
+    case FREQUENCY.ANNUAL:
+      return calculateAnnualMemo(props.startDate).remainingDays;
+    default:
+      return null;
+  }
+});
 
-switch (props.frequency) {
-  case FREQUENCY.DAILY: {
-    remainingDays = calculateDiffBetween('day', props.startDate);
-    formattedMemoTime = formatDaysToYearsMonthsAndDays(remainingDays);
-    break;
+const formattedMemoTime = computed(() => {
+  switch (props.frequency) {
+    case FREQUENCY.DAILY:
+      return formatDaysToYearsMonthsAndDays(remainingDays.value);
+    case FREQUENCY.MONTHLY:
+      return withNumberSuffix(calculateNextMonthiversaryNumber(props.startDate));
+    case FREQUENCY.ANNUAL:
+      return calculateAnnualMemo(props.startDate).formattedMemoTime;
+    default:
+      return '';
+  }
+});
+
+const memoMessage = computed(() => {
+  if (props.frequency === FREQUENCY.DAILY) {
+    return remainingDays.value === 0
+      ? 'Memo was created today.'
+      : `You achieved this memo ${formattedMemoTime.value} ago.`;
   }
 
-  case FREQUENCY.MONTHLY: {
-    remainingDays = calculateDaysToNextMonthiversary(props.startDate);
-    const monthiversaryNumber = calculateNextMonthiversaryNumber(
-      props.startDate
-    );
-    formattedMemoTime = withNumberSuffix(monthiversaryNumber);
-    break;
+  if (props.frequency === FREQUENCY.MONTHLY) {
+    return remainingDays.value === 0
+      ? `Today is the big day! 🎉 Time to celebrate your ${formattedMemoTime.value} monthly memo!`
+      : `Only ${remainingDays.value} days left until your ${formattedMemoTime.value} memo.`;
   }
 
-  case FREQUENCY.ANNUAL: {
-    const result = calculateAnnualMemo(props.startDate);
-    remainingDays = result.remainingDays;
-    formattedMemoTime = result.formattedMemoTime;
-    break;
+  if (props.frequency === FREQUENCY.ANNUAL) {
+    return remainingDays.value === 0
+      ? `Big day alert! 🚀 Your ${formattedMemoTime.value} memo anniversary is happening today!`
+      : `${remainingDays.value} days to go until your ${formattedMemoTime.value} memo anniversary!`;
   }
 
-  default:
-    break;
-}
+  return '';
+});
 </script>
