@@ -1,13 +1,18 @@
 <template>
   <!-- Toast -->
   <base-toast />
+
+  <!-- Loading -->
+  <section
+    v-if="loading"
+    class="max-w-7xl mx-auto min-h-screen flex gap-6 flex-col p-6"
+  >
+    <base-loader />
+  </section>
+
   <!-- No memos -->
   <section v-if="memosStore.allMemos.length === 0" class="p-6">
-    <base-hero
-      cta
-      cta-text="Create Your First Memo"
-      cta-link="/memos/new"
-    >
+    <base-hero cta cta-text="Create Your First Memo" cta-link="/memos/new">
       <template #title>Start Celebrating Life’s Moments!</template>
       <template #description>
         It looks like you haven’t set any memos yet. Begin tracking and
@@ -29,9 +34,9 @@
     >
       <template #title>No Matches Found</template>
       <template #description>
-        It seems we couldn’t find any memos that match your search or
-        selected filters. Adjust your filters or try a different search term to
-        explore your memos.
+        It seems we couldn’t find any memos that match your search or selected
+        filters. Adjust your filters or try a different search term to explore
+        your memos.
       </template>
     </base-hero>
   </section>
@@ -65,25 +70,38 @@ import { computed, onMounted, ref } from 'vue';
 import { useMemoStore, useToastStore } from '@/store';
 import MemoFilter from '@/components/memos/MemoFilter.vue';
 import MemoItem from '@/components/memos/MemoItem.vue';
+import BaseLoader from '@/components/ui/BaseLoader.vue';
 
-//Store
+// Store
 const memosStore = useMemoStore();
 const toastStore = useToastStore();
+const loading = ref(true);
 
-onMounted(() => {
+onMounted(async () => {
   const toastMessage = toastStore.getMessage.value;
   const toastType = toastStore.getType.value;
 
   if (toastMessage !== '') {
     toastStore.showToast(toastMessage, toastType);
   }
+
+  await fetchMemos();
 });
 
+// Función asíncrona para obtener los memos
+const fetchMemos = async () => {
+  loading.value = true; // Indicar que está cargando
+  await memosStore.fetchMemos(); // Llamar a la store para obtener los memos
+  loading.value = false; // Terminar carga
+};
+
+// Filtros
 const filters = ref({
   searchQuery: '',
   selectedFrequency: 'all',
 });
 
+// Computed para filtrar los memos
 const filteredMemos = computed(() => {
   return memosStore.allMemosReversed.filter((memo) => {
     const matchesSearch = memo.name
@@ -97,6 +115,7 @@ const filteredMemos = computed(() => {
   });
 });
 
+// Función para limpiar filtros
 const clearFilters = () => {
   filters.value = {
     searchQuery: '',

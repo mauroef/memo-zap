@@ -1,10 +1,8 @@
-import MemoListView from '@/views/memos/MemoListView.vue';
-
 export default [
   {
     path: '/memos',
     name: 'memo-list',
-    component: MemoListView,
+    component: () => import('@/views/memos/MemoListView.vue'),
   },
   {
     path: '/memos/:id',
